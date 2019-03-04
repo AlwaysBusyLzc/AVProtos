@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "dev_gate.proto";
 
 package messages;
 
@@ -82,12 +83,8 @@ message Logic2GateAsrProcRes {
 
 //网关向业务处理服务器透传音频数据
 message Gate2LogicAudioData {
-    string  conf_id = 1;
-    uint32  channel_index = 2;
-    bytes   beam_angle = 3;
-    uint32  payload_len = 4;
-    bytes   payload = 5;
-    uint32  session_id = 6;
+    Dev2GateAudioData data = 1;
+    uint32  session_id = 2;
 }
 
 message Gate2LogicOpenUserReq {
