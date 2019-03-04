@@ -27,6 +27,7 @@ message Dev2GateStartAsrProcReq {
     string account_name = 1;
     string device_id = 2;
     uint32 channel_num = 3;
+	string conf_id = 4;  // 请求开始一场新会议 0;   上传以前会议的数据填 有效的会议ID
 }
 
 //网关向设备透传应答，携带了confid信息
@@ -41,12 +42,11 @@ message Gate2DevAsrProcRes {
 
 //设备向网关发送的ogg-opus数据
 message Dev2GateAudioData {
-    string account_name = 1;
-    string conf_id = 2;
-    uint32 channel_index = 3;
-    bytes  beam_angle= 4;
-    uint32 payload_len = 5;
-    bytes  payload = 6;
+    string conf_id = 1;
+    uint32 channel_index = 2;
+    bytes  beam_angle= 3;
+    uint32 payload_len = 4;
+    bytes  payload = 5;
 }
 
 //设备向网关发送结束会议请求
