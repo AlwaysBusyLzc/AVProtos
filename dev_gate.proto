@@ -32,11 +32,11 @@ message Dev2GateStartAsrProcReq {
 //网关向设备透传应答，携带了confid信息
 message Gate2DevAsrProcRes {
     string conf_id = 1;
-	enum errro_no {
+	enum error_no {
 		success = 0;
 		fail = 1;
 	}
-	errro_no err = 2;
+	error_no err = 2;
 }
 
 //设备向网关发送的ogg-opus数据
