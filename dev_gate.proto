@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package messages;
+
+
+//网关服务器信息列表
+message GateService {
+    string  name = 1;
+    string  ip = 2;
+    uint32  port =3;
+}
+
+//前端设备向web服务请求获取可用的网关信息
+message Dev2LoadBalanceGetGateInfoReq {
+    string account_name = 1;
+    string device_id = 2;
+    uint32 channel_num = 3;
+}
+
+//web服务向设备返回可用的网关信息
+message DeviceGetGateInfoRes {
+    repeated GateService gate_services = 1;
+}
+
+//前端设备向网关发起连接，请求发送音频数据
+message Dev2GateStartAsrProcReq {
+    string account_name = 1;
+    string device_id = 2;
+    uint32 channel_num = 3;
+}
+
+//网关向设备透传应答，携带了confid信息
+message Gate2DevAsrProcRes {
+    string conf_id = 1;
+	enum errro_no {
+		success = 0;
+		fail = 1;
+	}
+	errro_no err = 2;
+}
+
+//设备向网关发送的ogg-opus数据
+message Dev2GateAudioData {
+    string account_name = 1;
+    string conf_id = 2;
+    uint32 channel_index = 3;
+    bytes  beam_angle= 4;
+    uint32 payload_len = 5;
+    bytes  payload = 6;
+}
+
+//设备向网关发送结束会议请求
+message Dev2GateEndAsrReq {
+	string conf_id = 1;
+}
