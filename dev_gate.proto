@@ -47,6 +47,7 @@ message Dev2GateAudioData {
     bytes  beam_angle= 3;
     uint32 payload_len = 4;
     bytes  payload = 5;
+	uint32 sequence_no = 6;
 }
 
 //设备向网关发送结束会议请求
